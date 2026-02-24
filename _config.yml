@@ -35,6 +35,7 @@ plugins:
   - jekyll-feed
 
 include: ["admin"]
+future: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
