@@ -41,39 +41,52 @@
 </div>
 
 <script>
-  function initMap() {
+  (function () {
     var mapEl = document.getElementById('map');
     if (!mapEl) return;
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FsdWxleCIsImEiOiJjamx6ampoZjgyMnYxM3FvZ2ppNjV2M2x5In0.bPgk2WI9NT-DJwnE-OtiLA';
+    function initMap() {
+      mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FsdWxleCIsImEiOiJjamx6ampoZjgyMnYxM3FvZ2ppNjV2M2x5In0.bPgk2WI9NT-DJwnE-OtiLA';
 
-    var map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/galulex/cmjjuexff009w01qz4awigw0q',
-      center: [-111.7635298, 34.8623132],
-      zoom: 18,
-      pitch: 45,
-      bearing: -17
-    });
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/galulex/cmjjuexff009w01qz4awigw0q',
+        center: [-111.7635298, 34.8623132],
+        zoom: 18,
+        pitch: 45,
+        bearing: -17
+      });
 
-    map.on('load', function () {
-      var spinner = document.getElementById('map-spinner');
-      if (spinner) spinner.remove();
-      var placeholder = document.getElementById('map-placeholder');
-      if (placeholder) placeholder.remove();
-    });
+      map.on('load', function () {
+        var spinner = document.getElementById('map-spinner');
+        if (spinner) spinner.remove();
+        var placeholder = document.getElementById('map-placeholder');
+        if (placeholder) placeholder.remove();
+      });
 
-    var stores = JSON.parse(mapEl.dataset.stores || '[]');
-    stores.forEach(function (store) {
-      var coords = store.coordinates.split(',').map(function (c) { return parseFloat(c.trim()); });
-      new mapboxgl.Marker({ color: 'red', scale: 2 })
-        .setLngLat(coords)
-        .setPopup(
-          new mapboxgl.Popup({ offset: 25 })
-            .setHTML('<h3>' + store.title + '</h3><p>' + store.subtitle + '</p>')
-        )
-        .addTo(map);
-    });
-  }
+      var stores = JSON.parse(mapEl.dataset.stores || '[]');
+      stores.forEach(function (store) {
+        var coords = store.coordinates.split(',').map(function (c) { return parseFloat(c.trim()); });
+        new mapboxgl.Marker({ color: 'red', scale: 2 })
+          .setLngLat(coords)
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25 })
+              .setHTML('<h3>' + store.title + '</h3><p>' + store.subtitle + '</p>')
+          )
+          .addTo(map);
+      });
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        observer.disconnect();
+        var s = document.createElement('script');
+        s.src = 'https://api.mapbox.com/mapbox-gl-js/v3.17.0/mapbox-gl.js';
+        s.onload = initMap;
+        document.head.appendChild(s);
+      }
+    }, { rootMargin: '200px' });
+
+    observer.observe(mapEl);
+  })();
 </script>
-<script src="https://api.mapbox.com/mapbox-gl-js/v3.17.0/mapbox-gl.js" defer onload="initMap()"></script>

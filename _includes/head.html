@@ -15,7 +15,13 @@
   <link rel="icon" href="{{ '/icon.svg' | relative_url }}" type="image/svg+xml">
   <link rel="apple-touch-icon" href="{{ '/icon.png' | relative_url }}">
 
-  <link rel="stylesheet" href="{{ '/assets/css/application.css' | relative_url }}" media="print" onload="this.media='all'">
+  <link rel="preload" href="/assets/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/Montserrat-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/Montserrat-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/BigCaslon-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/css/application.css" as="style">
+
+  <link rel="stylesheet" href="/assets/css/application.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.17.0/mapbox-gl.css" media="print" onload="this.media='all'" crossorigin>
 
   <noscript>
