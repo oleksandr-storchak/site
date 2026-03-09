@@ -1,0 +1,64 @@
+---
+layout: default
+---
+<div class="store-image">
+  {% if page.image %}
+    <img src="{{ page.image }}" alt="{{ page.title }}">
+  {% else %}
+    <img src="{{ '/assets/images/placeholder.webp' | relative_url }}" alt="{{ page.title }}">
+  {% endif %}
+</div>
+<section>
+  <h3>{{ page.title }}</h3>
+  {% if page.subtitle %}
+    <p>{{ page.subtitle }}</p>
+  {% endif %}
+
+  <div>
+    <div class="store-map" style="height: 195px;"></div>
+
+    {% if page.location %}
+      <hr>
+      <div class="detail">
+        <h5>Location</h5>
+        <p>{{ page.location }}</p>
+      </div>
+      <hr>
+    {% endif %}
+
+    {% include store/hours.html store_hours=page.store_hours %}
+
+    {% if page.phone %}
+      <div class="detail">
+        <h5>Phone</h5>
+        <a href="tel:{{ page.phone }}">{{ page.phone }}</a>
+      </div>
+    {% endif %}
+
+    {% if page.website %}
+      <hr>
+      <div class="detail">
+        <h5>Website</h5>
+        <a href="{{ page.website }}" target="_blank" rel="noopener">{{ page.website }}</a>
+      </div>
+    {% endif %}
+
+    {% if page.facebook or page.instagram %}
+      <hr>
+      <div class="store-social">
+        {% if page.facebook %}
+          <a href="{{ page.facebook }}" target="_blank" rel="noopener" class="social-link">
+            {% include icons/socials/facebook.svg %}
+          </a>
+        {% endif %}
+        {% if page.instagram %}
+          <a href="{{ page.instagram }}" target="_blank" rel="noopener" class="social-link">
+            {% include icons/socials/instagram.svg %}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script src="{{ '/assets/js/store/hours.js' | relative_url }}"></script>

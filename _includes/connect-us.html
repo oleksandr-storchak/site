@@ -1,0 +1,23 @@
+<article class="connect-us">
+  <h5 class="icon-weddings">
+    {% include icons/windows/weddings.svg %}
+    {{ site.data.connect-us.title }}
+  </h5>
+  <h6>{{ site.data.connect-us.description }}</h6>
+
+  <form id="connectUsForm">
+    <input type="hidden" id="contact-email" name="contactEmail" value="{{ site.email }}">
+    <input type="name" name="first-name" id="first-name" placeholder="{{ site.data.connect-us.form_placeholders.first_name }}" required>
+    <input type="name" name="last-name" id="last-name" placeholder="{{ site.data.connect-us.form_placeholders.last_name }}" required>
+    <input type="tel" name="phone" id="phone" placeholder="{{ site.data.connect-us.form_placeholders.phone }}" pattern="[0-9\-]+" title="Please enter a valid phone number" inputmode="numeric" required>
+    <input type="email" name="email" id="email" placeholder="{{ site.data.connect-us.form_placeholders.email }}" required>
+    <input type="text" name="event_date" id="event-date" placeholder="{{ site.data.connect-us.form_placeholders.event_date }}" pattern="(0[1-9]|1[0-2])-[0-3][0-9]-[0-9]{4}" title="Please enter date as mm-dd-yyyy" required>
+    <input type="text" name="guests" id="guests" placeholder="{{ site.data.connect-us.form_placeholders.guests }}" pattern="[0-9]+" title="Please enter a valid number of guests" required>
+    <input type="text" name="budget" id="budget" placeholder="{{ site.data.connect-us.form_placeholders.budget }}" pattern="[0-9]+" title="Please enter a valid budget number" required>
+    <button class="btn btn-primary" type="submit" id="send" >
+      {{ site.data.connect-us.submit_button }}
+    </button>
+  </form>
+</article>
+
+<script src="{{ '/assets/js/connect-us-form.js' | relative_url }}"></script>

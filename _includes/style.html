@@ -1,0 +1,427 @@
+<style>
+  :root {
+    /* Header */
+    --header-height: 131px;
+    --header-status-height: 37px;
+    --header-nav-height: 25px;
+    --layout-max-width: 1440px;
+
+    /* Color palette */
+    --navy: #111c4e;
+    --navy-80: color-mix(in srgb, var(--navy) 80%, transparent);
+    --navy-60: color-mix(in srgb, var(--navy) 60%, transparent);
+    --navy-40: color-mix(in srgb, var(--navy) 40%, transparent);
+    --cream: #f7ead7;
+    --cream-80: color-mix(in srgb, var(--cream) 80%, transparent);
+    --cream-60: color-mix(in srgb, var(--cream) 60%, transparent);
+    --cream-40: color-mix(in srgb, var(--cream) 40%, transparent);
+    --red: #e64b38;
+    --red-80: color-mix(in srgb, var(--red) 80%, transparent);
+    --red-60: color-mix(in srgb, var(--red) 60%, transparent);
+    --red-40: color-mix(in srgb, var(--red) 40%, transparent);
+    --orange: #f88d2b;
+    --orange-80: color-mix(in srgb, var(--orange) 80%, transparent);
+    --orange-60: color-mix(in srgb, var(--orange) 60%, transparent);
+    --orange-40: color-mix(in srgb, var(--orange) 40%, transparent);
+    --green: #008066;
+    --green-80: color-mix(in srgb, var(--green) 80%, transparent);
+    --green-60: color-mix(in srgb, var(--green) 60%, transparent);
+    --green-40: color-mix(in srgb, var(--green) 40%, transparent);
+    --blue: #1b638a;
+    --blue-80: color-mix(in srgb, var(--blue) 80%, transparent);
+    --blue-60: color-mix(in srgb, var(--blue) 60%, transparent);
+    --blue-40: color-mix(in srgb, var(--blue) 40%, transparent);
+    --pink: #d41367;
+    --pink-80: color-mix(in srgb, var(--pink) 80%, transparent);
+    --pink-60: color-mix(in srgb, var(--pink) 60%, transparent);
+    --pink-40: color-mix(in srgb, var(--pink) 40%, transparent);
+    --pink-light: #f291a6;
+    --purple: #9926b7;
+    --purple-80: color-mix(in srgb, var(--purple) 80%, transparent);
+    --purple-60: color-mix(in srgb, var(--purple) 60%, transparent);
+    --purple-40: color-mix(in srgb, var(--purple) 40%, transparent);
+    --gray: #D9D9D9;
+    --placeholder-bg: #e8e4df;
+
+    /* Utility colors */
+    --primary: var(--navy);
+    --secondary: var(--cream);
+    --bg: var(--secondary);
+    --text: var(--primary);
+    --secondary-text: var(--secondary);
+  }
+
+  @view-transition {
+    navigation: auto;
+  }
+
+  html {
+    background: var(--primary);
+    scroll-padding-top: calc(var(--header-height) + var(--header-status-height) + 4rem);
+
+    @media (max-width: 770px) {
+      scroll-padding-top: calc(var(--header-height) - var(--header-nav-height) + var(--header-status-height) + 1.5rem);
+    }
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    color: var(--text);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    background: var(--primary);
+    min-height: 100%;
+    height: auto;
+
+    &:has(header input#nav-toggle:checked) {
+      overflow-y: hidden;
+      position: fixed;
+      width: 100%;
+    }
+  }
+
+  main {
+    flex-grow: 1;
+    background: var(--cream);
+  }
+
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+  }
+
+  button {
+    color: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0px;
+    -webkit-tap-highlight-color: transparent;
+    transition: text-decoration-color 0.3s, text-underline-offset 0.3s;
+  }
+
+  a:hover {
+    text-underline-offset: 2px;
+    text-decoration-color: inherit;
+  }
+
+  footer {
+    background: var(--primary);
+    color: var(--secondary);
+    padding: 32px 20px 10rem 23px;
+    line-height: 2rem;
+    font-size: 10px;
+    font-weight: 500;
+    margin-bottom: -20px;
+  }
+
+  /* Critical CSS – CSS reset, typography sizes, header layout, container, landing banner.
+     Prevents layout shifts while application.css loads async. */
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { interpolate-size: allow-keywords; }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  *:not(dialog) { margin: 0; }
+
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img, picture, video, canvas {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  input, button, textarea, select { font: inherit; }
+
+  p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+  h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
+
+  #root, #__next { isolation: isolate; }
+
+  h1, h2, h3, h4 {
+    font-family: "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+
+  h1 { font-size: clamp(45px, 6vw, 90px); }
+  h2 { font-size: clamp(28px, 4.5vw, 60px); }
+  h3 { font-size: clamp(24px, 3vw, 40px); }
+  h4 { font-size: clamp(18px, 3vw, 34px); }
+
+  h5, h6 {
+    font-family: "Montserrat", sans-serif;
+    line-height: 1;
+  }
+
+  h5 { font-size: clamp(20px, 2.5vw, 32px); }
+
+  h6 {
+    font-size: clamp(12px, 1.7vw, 20px);
+    line-height: clamp(20px, 2.5vw, 40px);
+  }
+
+  p { font-size: clamp(12px, 1.7vw, 20px); }
+
+  .container {
+    padding: 0 20px;
+    display: grid;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    margin-top: 30px;
+    text-align: center;
+    background: var(--navy);
+    color: var(--cream);
+    z-index: 10;
+    box-shadow: 0px -30px 0px var(--navy);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  header a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  header a.logo {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    margin: 2rem 1rem 1rem;
+    outline: none;
+    width: clamp(215px, 30vw, 347px);
+  }
+
+  header a.logo img {
+    display: block;
+    width: 347px;
+    height: 72px;
+    min-width: 215px;
+    min-height: 45px;
+    margin-bottom: 10px;
+    object-fit: contain;
+  }
+
+  header ul.header-actions {
+    display: none;
+  }
+
+  header input#nav-toggle,
+  header label[for="nav-toggle"] {
+    display: none;
+  }
+
+  header nav#desktop {
+    height: var(--header-nav-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    text-transform: uppercase;
+  }
+
+  header nav#desktop a,
+  header nav#desktop button#visit-popover-anchor {
+    color: var(--cream);
+    font-size: clamp(12px, 1.7vw, 20px);
+    background: transparent;
+    display: inline-flex;
+    gap: 0.35rem;
+    padding: 0 0.5rem;
+    align-items: center;
+    text-transform: uppercase;
+    height: var(--header-nav-height);
+    border: none;
+  }
+
+  header nav#desktop div#visit-popover {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  header nav#mobile {
+    display: none;
+    height: 0;
+  }
+
+  header aside#status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cream);
+    color: var(--navy);
+    text-align: center;
+    padding: 0.45rem 1rem;
+    height: var(--header-status-height);
+    font-size: clamp(12px, 1.7vw, 15px);
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    width: 100%;
+  }
+
+  @media (max-width: 770px) {
+    header {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      align-items: start;
+    }
+
+    header a.logo {
+      margin: 0 2rem;
+      min-width: 0;
+    }
+
+    header ul.header-actions {
+      display: flex;
+      list-style: none;
+      margin-top: 1rem;
+      padding: 0;
+      justify-self: start;
+    }
+
+    header ul.header-actions li {
+      display: inline-flex;
+    }
+
+    header ul.header-actions a,
+    header ul.header-actions button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--cream);
+      padding: 0;
+    }
+
+    header ul.header-actions svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    header label[for="nav-toggle"] {
+      position: relative;
+      display: inline;
+      cursor: pointer;
+      height: 28px;
+      min-width: 28px;
+      margin-top: 1.3rem;
+      justify-self: end;
+    }
+
+    header nav#desktop { display: none; }
+
+    header aside#status { grid-column: 1 / -1; }
+  }
+
+  #landing-banner {
+    min-height: 427px;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 17px;
+    position: relative;
+  }
+
+  #landing-banner img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  #landing-banner h1 {
+    width: 100%;
+    text-align: center;
+  }
+
+  #landing-banner a.btn {
+    position: relative;
+    margin-top: 5rem;
+    z-index: 1;
+  }
+
+  #landing-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: clamp(144px, 25vw + 24px, 314px);
+    margin-bottom: clamp(2rem, 6vw, 5rem);
+  }
+
+  #landing-nav a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+  }
+
+  #landing-nav a img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #landing-nav a.shops { background: color-mix(in srgb, var(--pink) 40%, var(--cream)); }
+  #landing-nav a.foods { background: color-mix(in srgb, var(--orange) 40%, var(--cream)); }
+  #landing-nav a.galleries { background: color-mix(in srgb, var(--blue) 40%, var(--cream)); }
+  #landing-nav a.events { background: color-mix(in srgb, var(--purple) 40%, var(--cream)); }
+  #landing-nav a.weddings { background: color-mix(in srgb, var(--pink) 20%, var(--cream)); }
+  #landing-nav a.village-map { background: color-mix(in srgb, var(--navy) 40%, var(--cream)); }
+
+  /* CONTENT WRAPPER & UTILITIES */
+
+  .content-wrapper {
+    display: grid;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+
+  #map {
+    width: 100%;
+    height: 500px;
+    position: relative;
+  }
+
+  @media (max-width: 770px) {
+    #landing-nav {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

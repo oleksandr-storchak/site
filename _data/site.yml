@@ -1,0 +1,16 @@
+app_name: Tlaquepaque
+app_description: Arts & Shopping Village
+
+footer:
+  title: Join the Tlaquepaque community and stay inspired.
+  phone: "9282824838"
+  formatted_phone: "(928) 282-4838"
+  email: visitorinfo@tlaq.com
+  street_address: "336 State Route 179, Sedona, AZ 86336"
+  mail_address: "P.O. Box 1868, Sedona, AZ 86338"
+  join: Share your email to receive our newsletter and enjoy exclusive Village coupons.
+  magazine_alt: Tlaquepaque Magazine Cover
+
+directions_url: "https://www.google.com/maps/dir/?api=1&destination=Tlaquepaque%2C%20Sedona%2C%20AZ%2086336%2C%20USA&origin=Current%20Location&travelmode=driving"
+weather_url: "https://weather.com/weather/today/l/USAZ0209%3A1%3AUS"
+weather_widget: "https://weather.pwt.workers.dev/widget.svg"

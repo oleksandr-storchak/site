@@ -1,0 +1,23 @@
+<div class="card" id="storeItem">
+  {% if include.store.image %}
+    <img src="{{ include.store.image }}" alt="{{ include.store.title }}" width="600" loading="lazy">
+  {% else %}
+    <img src="{{ '/assets/images/placeholder.webp' | relative_url }}" alt="{{ include.store.title }}" width="600" loading="lazy">
+  {% endif %}
+  <h3>{{ include.store.title }}</h3>
+  {% if include.store.subtitle %}
+    <h6>{{ include.store.subtitle }}</h6>
+  {% endif %}
+  <p>
+    {% if include.store.suite %}
+      <span>SUITE {{ include.store.suite }}</span>
+    {% endif %}
+    {% if include.store.suite and include.store.phone %}
+      <span class="separator">|</span>
+    {% endif %}
+    {% if include.store.phone %}
+      <span>({{ include.store.phone | slice: 0, 3 }}) {{ include.store.phone | slice: 3, 3 }}-{{ include.store.phone | slice: 6, 4 }}</span>
+    {% endif %}
+  </p>
+  <a href="{{ include.store.url }}" class="btn btn-primary">DETAILS</a>
+</div>

@@ -1,0 +1,12 @@
+{% assign village_map = site.landing | where: "slug", "village-map" | first %}
+<article id="{{ village_map.slug }}">
+  <h5>
+    {% include {{ village_map.icon }} %}
+    {{ village_map.title }}
+  </h5>
+  <h2>{{ village_map.heading }}</h2>
+  {% include map.html %}
+  <section class="footer">
+    <h6>{{ village_map.description | escape }}</h6>
+  </section>
+</article>

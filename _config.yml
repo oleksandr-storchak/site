@@ -1,0 +1,77 @@
+title: Tlaquepaque
+description: Arts & Shopping Village
+url: ""
+baseurl: ""
+email: "katatsu12@gmail.com"
+
+collections:
+  landing:
+    output: false
+  shops:
+    output: true
+    permalink: /shops/:slug/
+  galleries:
+    output: true
+    permalink: /galleries/:slug/
+  foods:
+    output: true
+    permalink: /foods/:slug/
+  events:
+    output: true
+    permalink: /events/:slug/
+  articles:
+    output: true
+    permalink: /articles/:slug/
+  weddings:
+    output: true
+    permalink: /weddings/:slug/
+  wedding-articles:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "shops"
+    values:
+      layout: "store/show"
+      store_type: "shop"
+  - scope:
+      path: ""
+      type: "galleries"
+    values:
+      layout: "store/show"
+      store_type: "gallery"
+  - scope:
+      path: ""
+      type: "foods"
+    values:
+      layout: "store/show"
+      store_type: "food"
+  - scope:
+      path: ""
+      type: "events"
+    values:
+      layout: "event"
+  - scope:
+      path: ""
+      type: "articles"
+    values:
+      layout: "article"
+  - scope:
+      path: ""
+      type: "weddings"
+    values:
+      layout: "weddings/show"
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+include:
+  - .well-known
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - scripts/
+  - vendor/

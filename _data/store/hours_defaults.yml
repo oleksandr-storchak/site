@@ -1,0 +1,21 @@
+monday:
+  - "10:00 AM"
+  - "6:00 PM"
+tuesday:
+  - "10:00 AM"
+  - "6:00 PM"
+wednesday:
+  - "10:00 AM"
+  - "6:00 PM"
+thursday:
+  - "10:00 AM"
+  - "6:00 PM"
+friday:
+  - "10:00 AM"
+  - "6:00 PM"
+saturday:
+  - "10:00 AM"
+  - "6:00 PM"
+sunday:
+  - "10:00 AM"
+  - "6:00 PM"

@@ -1,0 +1,13 @@
+{% assign filming = site.landing | where: "slug", "filming" | first %}
+<article id="{{ filming.slug }}">
+  <h5>
+    {% include {{ filming.icon }} %}
+    {{ filming.title | escape }}
+  </h5>
+  <h2>{{ filming.heading | escape }}</h2>
+  <img src="{{ filming.image | relative_url }}" alt="{{ filming.alt }}" loading="lazy" width="800" height="600">
+  <section class="footer">
+    <h6>{{ filming.description | escape }}</h6>
+    <a href="{{ filming.link.url }}" class="btn btn-primary">{{ filming.link.text | escape }}</a>
+  </section>
+</article>

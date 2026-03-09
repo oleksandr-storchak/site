@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<div class="weddings">
+  {% assign image_path = "/assets/images/weddings/banner.webp" | relative_url %}
+  <figure class="hero" style="background-image: url('{{ image_path }}');" ></figure>
+  <div class="content-wrapper">
+    <hgroup>
+      <h5 class="icon-weddings">
+        {% include icons/windows/weddings.svg %}
+        {{ site.data.weddings.weddings }}
+      </h5>
+      <h2>{{ site.data.weddings.title }}</h2>
+      <h6>{{ site.data.weddings.description }}</h6>
+    </hgroup>
+
+    {% assign jump_nav_links = "venues,gallery,private_events" | split: "," %}
+    {% assign jump_nav_slugs = "weddings" %}
+    {% include page-jump-nav.html links=jump_nav_links slugs=jump_nav_slugs %}
+
+    {% include weddings/venues.html %}
+    {% include weddings/gallery.html %}
+    {% include connect-us.html %}
+    {% include weddings/brochure.html %}
+    {% include weddings/events.html %}
+  </div>
+</div>

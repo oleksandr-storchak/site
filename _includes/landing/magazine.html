@@ -1,0 +1,18 @@
+{% assign magazine = site.landing | where: "slug", "magazine" | first %}
+<article id="{{ magazine.slug }}">
+  <h5>
+    {% include {{ magazine.icon }} %}
+    {{ magazine.title }}
+  </h5>
+  <h2>{{ magazine.heading }}</h2>
+  <figure>
+    <img src="{{ magazine.image | relative_url }}" alt="{{ magazine.alt }}" loading="lazy" width="900" height="600">
+  </figure>
+  <section class="footer">
+    <h6>{{ magazine.description | escape }}</h6>
+    <div role="group" aria-label="Magazine actions">
+      <a href="{{ magazine.links[0].url }}" class="btn btn-primary">{{ magazine.links[0].text }}</a>
+      <a href="{{ magazine.links[1].url }}" class="btn btn-primary">{{ magazine.links[1].text }}</a>
+    </div>
+  </section>
+</article>

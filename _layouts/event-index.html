@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<div class="container">
+  {% include store/header.html
+    type="event"
+    header_image="events.webp"
+    title="Experience Tlaquepaque's celebrations, from weekly events to annual festivals."
+    description="Tlaquepaque's events showcase live music, cultural celebrations, and seasonal gatherings that bring the village to life throughout the year."
+  %}
+
+  <div class="header-jump">
+    <span>Jump to:</span>
+    <a href="#calendar" class="jump-link">CALENDAR</a>
+  </div>
+
+  <div class="event-list">
+    {% assign annual_events = site.events | where: "annual", true | sort: "starts_at" %}
+    {% for event in annual_events limit: 3 %}
+      <div class="event-card">
+        {% if event.image %}
+          <img src="{{ event.image }}" alt="{{ event.title }}">
+        {% else %}
+          <img src="{{ '/assets/images/placeholder.webp' | relative_url }}" alt="{{ event.title }}">
+        {% endif %}
+        <h3>{{ event.title }}</h3>
+        {% if event.subtitle %}<p>{{ event.subtitle }}</p>{% endif %}
+        {% if event.starts_at and event.ends_at %}
+          <div class="card-datetime">
+            {{ event.starts_at | date: "%B %-d, %Y" }} | {{ event.starts_at | date: "%-I:%M %p" }} - {{ event.ends_at | date: "%-I:%M %p" }}
+          </div>
+        {% endif %}
+        <a href="{{ event.url }}" class="btn btn-primary">DETAILS</a>
+      </div>
+    {% endfor %}
+  </div>
+
+  <hr>
+
+  {% include calendar.html %}
+</div>
+
+<script src="{{ '/assets/js/calendar.js' | relative_url }}"></script>

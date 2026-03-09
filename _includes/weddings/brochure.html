@@ -1,0 +1,14 @@
+<article id="brochure">
+  <h5 class="icon-weddings">
+    {% include icons/windows/weddings.svg %}
+    {{ site.data.weddings.brochure.title }}
+  </h5>
+
+  <div class="list-container">
+    <div class="card">
+      <img src="{{ site.data.weddings.brochure.image }}" alt="{{ site.data.weddings.brochure.title }}">
+      <a href="{{ site.data.weddings.brochure.brochure_url }}" target="_blank" class="btn btn-primary">{{ site.data.weddings.buttons.download_brochure }}</a>
+      <a href="#" class="btn btn-primary">{{ site.data.weddings.buttons.faq }}</a>
+    </div>
+  </div>
+</article>

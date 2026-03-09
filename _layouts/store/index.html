@@ -1,0 +1,26 @@
+---
+layout: default
+---
+{% assign image_path = "/assets/images/" | append: page.header_image | relative_url %}
+<figure class="hero" style="background-image: url('{{ image_path }}');" ></figure>
+
+<div class="content-wrapper">
+  {% include store/header.html type=page.store_type title=page.store_title description=page.store_description %}
+
+  <input type="search" id="storeSearch" list="storeSearchList" placeholder="SEARCH FOR A STORE">
+  <datalist id="storeSearchList">
+    {% assign stores = site[page.collection_name] | sort: "date" | reverse %}
+     {% for store in stores %}
+      <option value="{{ store.title }}"></option>
+    {% endfor %}
+  </datalist>
+
+  <div class="list-container">
+    {% assign stores = site[page.collection_name] | sort: "date" | reverse %}
+    {% for store in stores %}
+      {% include store/card.html store=store type=page.store_type %}
+    {% endfor %}
+  </div>
+</div>
+
+<script src="{{ '/assets/js/store/search.js' | relative_url }}"></script>

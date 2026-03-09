@@ -1,0 +1,9 @@
+{% capture icon_path %}icons/windows/{{ include.type }}.svg{% endcapture %}
+<hgroup>
+  <h5 class="icon-{{ include.type }}">
+    {% include {{ icon_path }} %}
+    {{- include.type -}}
+  </h5>
+  <h2>{{ include.title }}</h2>
+  <h6>{{ include.description }}</h6>
+</hgroup>

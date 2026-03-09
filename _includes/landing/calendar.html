@@ -1,0 +1,66 @@
+{% assign calendar = site.landing | where: "slug", "calendar" | first %}
+<article id="{{ calendar.slug }}">
+  <h5>
+    {% include {{ calendar.icon }} %}
+    {{ calendar.title }}
+  </h5>
+  <h2>{{ calendar.heading }}</h2>
+
+  {% assign sorted_events = site.events | sort: "starts_at" %}
+  {% assign now = 'now' | date: '%s' %}
+  {% assign landing_events = "" | split: "" %}
+  {% for event in sorted_events %}
+    {% if event.starts_at %}
+      {% assign event_time = event.starts_at | date: '%s' %}
+      {% if event_time >= now and landing_events.size < 3 %}
+        {% assign landing_events = landing_events | push: event %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% if landing_events.size == 0 %}
+    {% assign landing_events = sorted_events | reverse | slice: 0, 3 %}
+  {% endif %}
+
+  {% if landing_events.size > 0 %}
+    <div role="region" aria-label="Upcoming events">
+      <figure>
+        {% if landing_events[0].image %}
+          <img src="{{ landing_events[0].image | relative_url }}" alt="{{ landing_events[0].title | escape }}" width="400" height="300" loading="lazy">
+        {% else %}
+          <img src="{{ '/assets/images/placeholder.webp' | relative_url }}" alt="{{ landing_events[0].title | escape }}" width="400" height="300" loading="lazy">
+        {% endif %}
+      </figure>
+      <section class="calendar-events">
+        {% if landing_events[0].starts_at %}
+          <h4>{{ landing_events[0].starts_at | date: "%B %Y" }}</h4>
+        {% endif %}
+        <ul>
+          {% for event in landing_events %}
+          <li>
+            <a href="{{ event.url }}">
+              <time datetime="{{ event.starts_at | date_to_xmlschema }}">
+                <span>{{ event.starts_at | date: "%a" | upcase }}</span>
+                <span>{{ event.starts_at | date: "%-d" }}</span>
+              </time>
+              <hgroup>
+                <p>{{ event.starts_at | date: "%B %-d, %Y" }}</p>
+                <h3>{{ event.title | escape }}</h3>
+              </hgroup>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+    </div>
+  {% else %}
+    <p>{{ calendar.empty_message | escape }}</p>
+  {% endif %}
+
+  <section class="footer">
+    <h6>{{ calendar.description | escape }}</h6>
+    {% if calendar.link %}
+      <a href="{{ calendar.link.url }}" class="btn btn-primary">{{ calendar.link.text | escape }}</a>
+    {% endif %}
+  </section>
+</article>

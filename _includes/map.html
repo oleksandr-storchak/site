@@ -1,0 +1,79 @@
+{% comment %}Build store data as JSON from all collections{% endcomment %}
+{% assign all_stores = site.shops | concat: site.galleries | concat: site.foods %}
+
+<style>
+  #map-placeholder {
+    position: absolute;
+    inset: 0;
+    background: var(--map-bg) center/cover no-repeat;
+    filter: blur(7px)
+  }
+
+  #map-spinner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    color: var(--navy-80)
+  }
+
+  #map-spinner span {
+    width: 48px;
+    height: 48px;
+    animation: spin 2s linear infinite
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg)
+    }
+  }
+</style>
+
+<div id="map" style="width:100%;height:500px;position:relative"
+  data-stores='[{% for store in all_stores %}{% if store.coordinates %}{"title":"{{ store.title | escape }}","subtitle":"{{ store.subtitle | escape }}","coordinates":"{{ store.coordinates }}"}{% unless forloop.last %},{% endunless %}{% endif %}{% endfor %}]'>
+  <div id="map-placeholder" style="--map-bg:url('{{ '/assets/images/map-placeholder.webp' | relative_url }}')"></div>
+  <div id="map-spinner">
+    <span>{% include icons/loader.svg %}</span>
+  </div>
+</div>
+
+<script>
+  function initMap() {
+    var mapEl = document.getElementById('map');
+    if (!mapEl) return;
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FsdWxleCIsImEiOiJjamx6ampoZjgyMnYxM3FvZ2ppNjV2M2x5In0.bPgk2WI9NT-DJwnE-OtiLA';
+
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/galulex/cmjjuexff009w01qz4awigw0q',
+      center: [-111.7635298, 34.8623132],
+      zoom: 18,
+      pitch: 45,
+      bearing: -17
+    });
+
+    map.on('load', function () {
+      var spinner = document.getElementById('map-spinner');
+      if (spinner) spinner.remove();
+      var placeholder = document.getElementById('map-placeholder');
+      if (placeholder) placeholder.remove();
+    });
+
+    var stores = JSON.parse(mapEl.dataset.stores || '[]');
+    stores.forEach(function (store) {
+      var coords = store.coordinates.split(',').map(function (c) { return parseFloat(c.trim()); });
+      new mapboxgl.Marker({ color: 'red', scale: 2 })
+        .setLngLat(coords)
+        .setPopup(
+          new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<h3>' + store.title + '</h3><p>' + store.subtitle + '</p>')
+        )
+        .addTo(map);
+    });
+  }
+</script>
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.17.0/mapbox-gl.js" defer onload="initMap()"></script>

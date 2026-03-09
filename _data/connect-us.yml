@@ -1,0 +1,11 @@
+title: Connect With Us
+description: To book your wedding with us or to have us answer additional questions regarding our village, venues or our packages, please fill out the form below.
+form_placeholders:
+  first_name: First Name
+  last_name: Last Name
+  phone: Phone Number
+  email: Email
+  event_date: Event Date
+  guests: Numbers of Guests
+  budget: Budget for Venue
+submit_button: SUBMIT

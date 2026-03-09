@@ -1,0 +1,24 @@
+<head>
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.data.site.app_name }}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="{{ site.data.site.app_name }}">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#111c4e">
+  <meta name="color-scheme" content="dark">
+
+  {% include style.html %}
+
+  {% seo %}
+
+  <link rel="icon" href="{{ '/icon.png' | relative_url }}" type="image/png">
+  <link rel="icon" href="{{ '/icon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="{{ '/icon.png' | relative_url }}">
+
+  <link rel="stylesheet" href="{{ '/assets/css/application.css' | relative_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.17.0/mapbox-gl.css" media="print" onload="this.media='all'" crossorigin>
+
+  <noscript>
+    <link rel="stylesheet" href="{{ '/assets/css/application.css' | relative_url }}">
+  </noscript>
+</head>

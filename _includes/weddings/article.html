@@ -1,0 +1,17 @@
+{% assign wedding_articles = site.wedding-articles | sort: "date" | where: "category", page.slug %}
+{% for wedding_article in wedding_articles %}
+  <article>
+    <h5>{{ wedding_article.title }}</h5>
+    {% if wedding_article.subtitle %}<h6>{{ wedding_article.subtitle }}</h6>{% endif %}
+    {% if wedding_article.images %}
+      <div class="image-split">
+        {% for image in wedding_article.images %}
+          <img src="{{ image | relative_url }}" alt="{{ wedding_article.title }}">
+        {% endfor %}
+      </div>
+    {% else %}
+        <img src="{{ '/assets/images/placeholder.webp' | relative_url }}" alt="{{ wedding_article.title }}">
+    {% endif %}
+    <a href="{{ wedding_article.url }}" class="btn btn-primary">{{ site.data.weddings.buttons.learn_more }}</a>
+  </article>
+{% endfor %}

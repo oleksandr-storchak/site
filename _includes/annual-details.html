@@ -1,0 +1,19 @@
+{% comment %}
+  Annual event details. Expects page.schedule to be defined in event front matter.
+{% endcomment %}
+<div class="video"></div>
+
+{% if include.event.schedule %}
+  <h3>Schedule</h3>
+  <hr>
+  {% for venue in include.event.schedule %}
+    {{ venue.location | upcase }}
+    {% for performance in venue.performances %}
+      <div class="schedule-item">
+        <span class="performer">{{ performance.name }}</span>
+        <span class="time">{{ performance.time }}</span>
+      </div>
+    {% endfor %}
+    <hr>
+  {% endfor %}
+{% endif %}

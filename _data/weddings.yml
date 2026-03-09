@@ -1,0 +1,47 @@
+title: Tlaquepaque, one of Sedona's premier weddings and event destinations.
+description: Specialized in intimate weddings and events, Tlaquepaque offers beauty and old world charm in the heart of Sedona. Vine covered stucco walls, cobblestone walkways, arched entryways and elegant plazas, provide you with a magical place to design the wedding of your dreams.
+weddings: WEDDINGS & PRIVATE EVENTS
+venues: VENUES
+gallery:
+  title: GALLERY
+  items:
+    - title: Lauren & Owen
+      video_url: "https://vid.cdn-website.com/164890e9/videos/Bs3nN1QQQMGVhonZiS2A_SS23-v.mp4"
+    - title: Kelsie & Xavier
+      video_url: "https://vid.cdn-website.com/164890e9/videos/PsNbS5M0Tx6imKwuz1GU_SS22-v.mp4"
+brochure:
+  title: WEDDING BROCHURE
+  brochure_url: "https://irp.cdn-website.com/164890e9/files/uploaded/Tlaq_Wedding_Brochure_062625_R.pdf"
+  image: "/assets/images/weddings/brochure.webp"
+events:
+  title: CORPORATE & PRIVATE EVENTS
+  description: Host memorable gatherings—from awards dinners and executive retreats to milestone birthdays, anniversaries, and private celebrations—set within our iconic courtyards and other venues beneath the sycamore trees.
+  image: "/assets/images/weddings/events.webp"
+  brochure_url: "https://irp.cdn-website.com/164890e9/files/uploaded/Tlaq_Wedding_Brochure_062625_R.pdf"
+
+# Buttons
+buttons:
+  learn_more: LEARN MORE
+  explore_more: EXPLORE MORE
+  faq: FAQ
+  download_brochure: DOWNLOAD WEDDING BROCHURE
+  inquiry_submit: SUBMIT AN INQUIRY
+  download_site_plan: DOWNLOAD SITE PLAN
+
+# Jump to links
+jump_to_links:
+  venues:
+    text: VENUES
+    id: "#venues"
+  gallery:
+    text: INSPIRATION
+    id: "#gallery"
+  private_events:
+    text: PRIVATE EVENTS
+    id: "#events"
+
+# Site Plan
+site_plan:
+  title: SITE PLAN
+  image: "/assets/images/weddings/site-plan.webp"
+  plan_url: "https://irp.cdn-website.com/164890e9/files/uploaded/TLAQ%20wedding%20plans%20(2).pdf"

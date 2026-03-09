@@ -1,0 +1,42 @@
+<footer>
+  <h3>Join the Tlaquepaque community and stay inspired.</h3>
+  <br>
+  <button type="button">{{ site.data.site.footer.join }}</button>
+  <hr>
+  <address>
+    <a href="tel:{{ site.data.site.footer.phone }}">{{ site.data.site.footer.formatted_phone }}</a>
+     |
+    <a href="mailto:{{ site.data.site.footer.email }}">{{ site.data.site.footer.email }}</a>
+    <p>Street Address: {{ site.data.site.footer.street_address }}</p>
+    <p>Mail Address: {{ site.data.site.footer.mail_address }}</p>
+  </address>
+  <div>
+    <nav>
+      <a href="/about">About</a>
+      <a href="/village_map">Village Map</a>
+      <a href="#">Contact Us</a>
+      <a href="/events/">Events</a>
+      <a href="#">Gift Cards</a>
+      <a href="#">Leasing</a>
+      <a href="/weddings">Wedding and Private Events</a>
+      <a href="#">Filming</a>
+    </nav>
+    <nav>
+      <p>Read the Magazine</p>
+      <div class="magazine-placeholder" aria-label="{{ site.data.site.footer.magazine_alt }}"></div>
+      <p>Follow Us</p>
+      <a class="social facebook" href="https://www.facebook.com/tlaqsedona/" target="_blank" title="Facebook">
+        {% include icons/socials/facebook.svg %}
+      </a>
+      <a class="social" href="https://www.instagram.com/tlaqsedona/" target="_blank" title="Instagram">
+        {% include icons/socials/instagram.svg %}
+      </a>
+    </nav>
+  </div>
+  <p>&copy;{{ 'now' | date: '%Y' }} Tlaquepaque Arts &amp; Shopping Village. All Rights Reserved.</p>
+  <p>
+    <a href="#">Privacy Policy</a>
+     |
+    <a href="#">Terms and Conditions</a>
+  </p>
+</footer>

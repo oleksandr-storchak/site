@@ -1,0 +1,66 @@
+---
+layout: default
+---
+{% assign banner = site.landing | where: "section", "banner" | first %}
+<section id="landing-banner">
+  {% assign img = banner.image %}
+  <img src="{{ '/assets/images/' | append: img | append: '-960.webp' | relative_url }}" srcset="{{ '/assets/images/' | append: img | append: '-480.webp' | relative_url }} 480w,
+              {{ '/assets/images/' | append: img | append: '-960.webp' | relative_url }} 960w,
+              {{ '/assets/images/' | append: img | append: '-1440.webp' | relative_url }} 1440w" sizes="100vw"
+    alt="{{ banner.heading }}" width="1440" height="1020" fetchpriority="high">
+  <h1>{{ banner.heading }}</h1>
+  <a href="{{ banner.button.url }}" class="btn">{{ banner.button.text }}</a>
+</section>
+
+<nav id="landing-nav" aria-label="{{ page.nav.label }}">
+  <a href="{{ page.nav.shops.url }}" class="shops">
+    <img src="{{ '/assets/images/' | append: page.nav.shops.image | relative_url }}" alt="" loading="lazy" fetchpriority="low" width="240"
+      height="174">
+    <h5>{{ page.nav.shops.title }}</h5>
+    <p>{{ page.nav.shops.description }}</p>
+  </a>
+  <a href="{{ page.nav.food.url }}" class="foods">
+    <img src="{{ '/assets/images/' | append: page.nav.food.image | relative_url }}" alt="" loading="lazy" fetchpriority="low" width="240"
+      height="174">
+    <h5>{{ page.nav.food.title }}</h5>
+    <p>{{ page.nav.food.description }}</p>
+  </a>
+  <a href="{{ page.nav.galleries.url }}" class="galleries">
+    <img src="{{ '/assets/images/' | append: page.nav.galleries.image | relative_url }}" alt="" loading="lazy" fetchpriority="low"
+      width="360" height="261">
+    <h5>{{ page.nav.galleries.title }}</h5>
+    <p>{{ page.nav.galleries.description }}</p>
+  </a>
+  <a href="{{ page.nav.events.url }}" class="events">
+    <img src="{{ '/assets/images/' | append: page.nav.events.image | relative_url }}" alt="" loading="lazy" fetchpriority="low" width="240"
+      height="174">
+    <h5>{{ page.nav.events.title }}</h5>
+    <p>{{ page.nav.events.description }}</p>
+  </a>
+  <a href="{{ page.nav.weddings.url }}" class="weddings">
+    <img src="{{ '/assets/images/' | append: page.nav.weddings.image | relative_url }}" alt="" loading="lazy" fetchpriority="low"
+      width="360" height="261">
+    <h5>{{ page.nav.weddings.title }}</h5>
+    <p>{{ page.nav.weddings.description }}</p>
+  </a>
+  <a href="{{ page.nav.village_map.url }}" class="village-map" aria-label="{{ page.nav.village_map.title }}">
+    <img src="{{ '/assets/images/' | append: page.nav.village_map.image | relative_url }}" alt="" loading="lazy" fetchpriority="low"
+      width="360" height="261">
+    <h5>{{ page.nav.village_map.title }}</h5>
+    <p>{{ page.nav.village_map.description }}</p>
+  </a>
+</nav>
+
+<div class="content-wrapper">
+  {% comment %} Render article sections in their defined order {% endcomment %}
+  {% assign article_sections = site.landing | where: "section", "articles" | sort: "order" %}
+  {% for section in article_sections %}
+    {% assign template = "landing/" | append: section.slug | append: ".html" %}
+    {% include {{ template }} %}
+  {% endfor %}
+</div>
+
+{% comment %} Render the footer section {% endcomment %}
+{% assign footer = site.landing | where: "section", "footer" | first %}
+{% assign template = "landing/" | append: footer.slug | append: ".html" %}
+{% include {{ template }} %}

@@ -1,0 +1,25 @@
+{% assign whats_new = site.landing | where: "slug", "whats-new" | first %}
+<article id="{{ whats_new.slug }}">
+  <h5>
+    {% include {{ whats_new.icon }} %}
+    {{ whats_new.title }}
+  </h5>
+  <h2>{{ whats_new.heading }}</h2>
+  <div>
+    <img src="{{ whats_new.featured.image | relative_url }}" alt="{{ whats_new.featured.alt }}" loading="lazy" width="1246" height="890">
+    <h3>{{ whats_new.featured.title }}</h3>
+    <p>{{ whats_new.featured.description }}</p>
+  </div>
+  <div>
+    {% for item in whats_new.items %}
+    <section>
+      <img src="{{ item.image | relative_url }}" alt="{{ item.alt }}" loading="lazy" width="592" height="385">
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.description }}</p>
+    </section>
+    {% endfor %}
+  </div>
+  <section class="footer">
+    <a href="{{ whats_new.link.url }}" class="btn btn-primary">{{ whats_new.link.text }}</a>
+  </section>
+</article>

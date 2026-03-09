@@ -1,0 +1,37 @@
+{% comment %}
+  Store hours component.
+  Pass store hours via include.store_hours, or falls back to site defaults.
+  "Today" highlighting is done client-side in store/hours.js.
+{% endcomment %}
+
+{% if include.store_hours %}
+  {% assign hours = include.store_hours %}
+{% else %}
+  {% assign hours = site.data.store.hours_defaults %}
+{% endif %}
+
+<div class="store-hours">
+  <h3 class="store-hours-title">Store Hours</h3>
+
+  <ul class="store-hours-list">
+    {% assign days = "monday,tuesday,wednesday,thursday,friday,saturday,sunday" | split: "," %}
+    {% assign day_labels = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday" | split: "," %}
+    {% for day in days %}
+      {% assign idx = forloop.index0 %}
+      <li class="store-hours-day" data-day="{{ day }}">
+        <span class="day-name">{{ day_labels[idx] }}</span>
+        <span class="day-hours">
+          {% if hours[day] %}
+            {% if hours[day].first %}
+              {{ hours[day][0] }} - {{ hours[day][1] }}
+            {% else %}
+              {{ hours[day] }}
+            {% endif %}
+          {% else %}
+            Closed
+          {% endif %}
+        </span>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,75 @@
+<header>
+  <input id="nav-toggle" name="nav-toggle" type="checkbox">
+  <label for="nav-toggle" aria-label="Toggle navigation menu"></label>
+
+  <nav id="mobile">
+    <input id="visit-toggle" type="checkbox">
+    <label id="mobile-submenu-toggle" for="visit-toggle" aria-label="Visit submenu">
+      {% include icons/windows/shop.svg %}
+      Visit
+      {% include icons/caret_down.svg %}
+    </label>
+    <nav id="mobile-submenu-content" aria-label="Visit pages">
+      <a href="{{ '/' | relative_url }}">{% include icons/windows/shop.svg %} Main</a>
+      <a href="{{ '/hours' | relative_url }}">{% include icons/windows/shop.svg %} Hours</a>
+      <a href="{{ '/locations' | relative_url }}">{% include icons/windows/shop.svg %} Locations</a>
+      <a href="{{ '/parking' | relative_url }}">{% include icons/windows/shop.svg %} Parking</a>
+      <a href="{{ '/village_map' | relative_url }}">{% include icons/windows/shop.svg %} Village Map</a>
+      <a href="{{ '/accessibility' | relative_url }}">{% include icons/windows/shop.svg %} Accessibility</a>
+      <a href="{{ '/family_and_pet' | relative_url }}">{% include icons/windows/shop.svg %} Family &amp; Pet</a>
+    </nav>
+    <a href="/shops/">{% include icons/windows/shop.svg %} Shop</a>
+    <a href="/galleries/">{% include icons/windows/gallery.svg %} Gallery</a>
+    <a href="/foods/">{% include icons/windows/food.svg %} Food</a>
+    <a href="/events/">{% include icons/windows/event.svg %} Events</a>
+    <a href="/weddings">{% include icons/windows/shop.svg %} Weddings</a>
+  </nav>
+
+  <a href="{{ '/' | relative_url }}" class="logo">
+    <img src="{{ '/assets/images/logos/main.webp' | relative_url }}" alt="Tlaquepaque Arts &amp; Shopping Village" width="347" height="72">
+  </a>
+
+  <ul class="header-actions">
+    <li>
+      <a class="direction" href="{{ site.data.site.directions_url }}" target="_blank" rel="noopener" aria-label="Get directions">
+        {% include icons/location.svg %}
+      </a>
+    </li>
+    <li>
+      <button type="button" aria-label="Search">
+        {% include icons/search.svg %}
+      </button>
+    </li>
+  </ul>
+
+  <nav id="desktop">
+    <button type="button" id="visit-popover-anchor" aria-haspopup="true" aria-controls="visit-popover">
+      {% include icons/windows/shop.svg %}
+      Visit
+      {% include icons/caret_down.svg %}
+    </button>
+    <div id="visit-popover" popover="auto">
+      <a href="{{ '/' | relative_url }}">{% include icons/windows/shop.svg %} Main</a>
+      <a href="{{ '/hours' | relative_url }}">{% include icons/windows/shop.svg %} Hours</a>
+      <a href="{{ '/locations' | relative_url }}">{% include icons/windows/shop.svg %} Locations</a>
+      <a href="{{ '/parking' | relative_url }}">{% include icons/windows/shop.svg %} Parking</a>
+      <a href="{{ '/village_map' | relative_url }}">{% include icons/windows/shop.svg %} Village Map</a>
+      <a href="{{ '/accessibility' | relative_url }}">{% include icons/windows/shop.svg %} Accessibility</a>
+      <a href="{{ '/family_and_pet' | relative_url }}">{% include icons/windows/shop.svg %} Family &amp; Pet</a>
+    </div>
+    <a href="/shops/">{% include icons/windows/shop.svg %} Shop</a>
+    <a href="/galleries/">{% include icons/windows/gallery.svg %} Gallery</a>
+    <a href="/foods/">{% include icons/windows/food.svg %} Food</a>
+    <a href="/events/">{% include icons/windows/event.svg %} Events</a>
+    <a href="/weddings">{% include icons/windows/shop.svg %} Weddings</a>
+  </nav>
+
+  <aside id="status" aria-label="Store hours and weather">
+    OPEN TODAY:&nbsp;<time datetime="10:00-17:00">10:00 AM - 5:00 PM</time>
+    &nbsp;|&nbsp;
+    <a id="weather" href="{{ site.data.site.weather_url }}" target="_blank" aria-label="Current weather" style="position: relative;">
+      <img src="{{ site.data.site.weather_widget }}" height="16" style="vertical-align: middle; display: inline-block;"
+        alt="Current Weather">
+    </a>
+  </aside>
+</header>

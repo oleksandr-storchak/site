@@ -1,0 +1,88 @@
+---
+layout: default
+---
+<div class="top-section">
+  {% if page.image %}
+    <img src="{{ page.image }}" alt="{{ page.title }}">
+  {% else %}
+    <img src="{{ '/assets/images/placeholder.webp' | relative_url }}" alt="{{ page.title }}">
+  {% endif %}
+
+  <section>
+    <h3>{{ page.title }}</h3>
+    <div class="details">
+      {% if page.starts_at %}
+      <div>
+        <span class="icon">{% include icons/calendar.svg %}</span>
+        <span>{{ page.starts_at | date: "%A, %B %-d, %Y" | upcase }}</span>
+      </div>
+      {% endif %}
+
+      {% if page.starts_at %}
+      <div>
+        <span class="icon">{% include icons/clock.svg %}</span>
+        {% if page.ends_at %}
+          <span>{{ page.starts_at | date: "%-I:%M %p" | upcase }} - {{ page.ends_at | date: "%-I:%M %p" | upcase }}</span>
+        {% else %}
+          <span>{{ page.starts_at | date: "%-I:%M %p" | upcase }}</span>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if page.location %}
+      <div>
+        <span class="icon">{% include icons/location.svg %}</span>
+        <span>{{ page.location | upcase }}</span>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+</div>
+
+<section>
+  {{ content }}
+
+  {% if page.annual %}
+    {% include annual-details.html event=page %}
+  {% endif %}
+
+  {% if page.phone %}
+    <hr>
+    <div class="contact-item">
+      <label>PHONE</label>
+      <p>{{ page.phone }}</p>
+    </div>
+  {% endif %}
+
+  {% if page.website %}
+    <hr>
+    <div class="contact-item">
+      <label>WEBSITE</label>
+      <p><a href="{{ page.website }}" target="_blank" rel="noopener noreferrer">{{ page.website }}</a></p>
+    </div>
+  {% endif %}
+
+  {% if page.email %}
+    <hr>
+    <div class="contact-item">
+      <label>EMAIL</label>
+      <p><a href="mailto:{{ page.email }}">{{ page.email }}</a></p>
+    </div>
+  {% endif %}
+
+  {% if page.facebook or page.instagram %}
+    <hr>
+    <div class="contact-social">
+      {% if page.facebook %}
+        <a href="{{ page.facebook }}" target="_blank" rel="noopener noreferrer" class="social-icon">
+          {% include icons/facebook.svg %}
+        </a>
+      {% endif %}
+      {% if page.instagram %}
+        <a href="{{ page.instagram }}" target="_blank" rel="noopener noreferrer" class="social-icon">
+          {% include icons/instagram.svg %}
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>

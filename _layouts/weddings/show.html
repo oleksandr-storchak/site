@@ -1,0 +1,13 @@
+---
+layout: default
+---
+{% assign image_path = page.image | relative_url %}
+<figure class="hero" style="background-image: url('{{ image_path }}');" ></figure>
+
+<div class="content-wrapper">
+  {{ content }}
+  {% include weddings/article.html %}
+  {% include weddings/site-plan.html %}
+  {% include connect-us.html %}
+  {% include weddings/brochure.html %}
+</div>

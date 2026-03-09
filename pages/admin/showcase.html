@@ -1,0 +1,632 @@
+---
+layout: page
+title: Component Showcase
+permalink: /admin/showcase
+---
+
+<style>
+  /* Override main's overflow-x:hidden which breaks position:sticky */
+  main {
+    overflow-x: clip;
+  }
+
+  .showcase-layout {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 2rem;
+    padding: 2rem 1rem;
+  }
+
+  .showcase-nav {
+    position: sticky;
+    top: calc(var(--header-height) + 4rem);
+    align-self: flex-start;
+    width: 180px;
+    flex-shrink: 0;
+  }
+
+  .showcase-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .showcase-nav a {
+    display: block;
+    padding: 0.4rem 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--navy-60);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .showcase-nav a:hover,
+  .showcase-nav a.active {
+    color: var(--navy);
+    border-left-color: var(--red);
+  }
+
+  .showcase {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 768px) {
+    .showcase-layout {
+      flex-direction: column;
+    }
+
+    .showcase-nav {
+      position: static;
+      width: 100%;
+    }
+
+    .showcase-nav ul {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.5rem;
+    }
+
+    .showcase-nav a {
+      border-left: none;
+      border-bottom: 2px solid transparent;
+      padding: 0.25rem 0.5rem;
+      font-size: 1rem;
+    }
+
+    .showcase-nav a:hover,
+    .showcase-nav a.active {
+      border-left-color: transparent;
+      border-bottom-color: var(--red);
+    }
+  }
+
+  .showcase-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--gray);
+  }
+
+  .showcase-section > h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .showcase-label {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--navy-60);
+    margin: 1rem 0 0.5rem;
+  }
+
+  .color-table {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0.75rem;
+  }
+
+  .color-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .color-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .color-swatch > div {
+    width: 100%;
+    height: 60px;
+    border-radius: 4px;
+    border: 1px solid var(--gray);
+  }
+
+  .color-swatch > span {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+
+  .color-extras {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .showcase-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+    margin: 20px;
+  }
+
+  .icon-grid > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .icon-grid > div svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .icon-grid > div span {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .showcase-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .showcase-tag {
+    display: inline-block;
+    font-family: monospace;
+    background: var(--navy);
+    color: var(--cream);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+  }
+</style>
+
+<!-- Force-load lazy CSS for store/events components -->
+<link rel="stylesheet" href="{{ '/assets/css/events.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/store/index.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/store/hours.css' | relative_url }}">
+
+<div class="showcase-layout">
+
+  <aside class="showcase-nav">
+    <ul>
+      <li><a href="#colors">Colors</a></li>
+      <li><a href="#typography">Typography</a></li>
+      <li><a href="#buttons">Buttons</a></li>
+      <li><a href="#icons">Icons</a></li>
+      <li><a href="#store-search">Store Search</a></li>
+      <li><a href="#store-cards">Store Cards</a></li>
+      <li><a href="#store-hours">Store Hours</a></li>
+      <li><a href="#calendar">Calendar Items</a></li>
+      <li><a href="#map">Map</a></li>
+    </ul>
+  </aside>
+
+  <div class="showcase">
+
+  <!-- Colors -->
+  <div class="showcase-section" id="colors">
+    <h2>Colors</h2>
+
+    <p class="showcase-label">Colors &amp; Shades <span class="showcase-tag">CSS var() / color-mix()</span></p>
+    <div class="color-table">
+      <div class="color-column">
+        <div class="color-swatch">
+          <div style="background: var(--navy);"></div>
+          <span>--navy</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--navy-80);"></div>
+          <span>--navy-80</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--navy-60);"></div>
+          <span>--navy-60</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--navy-40);"></div>
+          <span>--navy-40</span>
+        </div>
+      </div>
+      <div class="color-column">
+        <div class="color-swatch">
+          <div style="background: var(--cream);"></div>
+          <span>--cream</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--cream-80);"></div>
+          <span>--cream-80</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--cream-60);"></div>
+          <span>--cream-60</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--cream-40);"></div>
+          <span>--cream-40</span>
+        </div>
+      </div>
+      <div class="color-column">
+        <div class="color-swatch">
+          <div style="background: var(--red);"></div>
+          <span>--red</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--red-80);"></div>
+          <span>--red-80</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--red-60);"></div>
+          <span>--red-60</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--red-40);"></div>
+          <span>--red-40</span>
+        </div>
+      </div>
+      <div class="color-column">
+        <div class="color-swatch">
+          <div style="background: var(--orange);"></div>
+          <span>--orange</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--orange-80);"></div>
+          <span>--orange-80</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--orange-60);"></div>
+          <span>--orange-60</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--orange-40);"></div>
+          <span>--orange-40</span>
+        </div>
+      </div>
+      <div class="color-column">
+        <div class="color-swatch">
+          <div style="background: var(--green);"></div>
+          <span>--green</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--green-80);"></div>
+          <span>--green-80</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--green-60);"></div>
+          <span>--green-60</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--green-40);"></div>
+          <span>--green-40</span>
+        </div>
+      </div>
+      <div class="color-column">
+        <div class="color-swatch">
+          <div style="background: var(--blue);"></div>
+          <span>--blue</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--blue-80);"></div>
+          <span>--blue-80</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--blue-60);"></div>
+          <span>--blue-60</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--blue-40);"></div>
+          <span>--blue-40</span>
+        </div>
+      </div>
+      <div class="color-column">
+        <div class="color-swatch">
+          <div style="background: var(--pink);"></div>
+          <span>--pink</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--pink-80);"></div>
+          <span>--pink-80</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--pink-60);"></div>
+          <span>--pink-60</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--pink-40);"></div>
+          <span>--pink-40</span>
+        </div>
+      </div>
+      <div class="color-column">
+        <div class="color-swatch">
+          <div style="background: var(--purple);"></div>
+          <span>--purple</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--purple-80);"></div>
+          <span>--purple-80</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--purple-60);"></div>
+          <span>--purple-60</span>
+        </div>
+        <div class="color-swatch">
+          <div style="background: var(--purple-40);"></div>
+          <span>--purple-40</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="showcase-label">Other Colors <span class="showcase-tag">CSS var()</span></p>
+    <div class="color-extras">
+      <div class="color-swatch">
+        <div style="background: var(--pink-light);"></div>
+        <span>--pink-light</span>
+      </div>
+      <div class="color-swatch">
+        <div style="background: var(--gray);"></div>
+        <span>--gray</span>
+      </div>
+      <div class="color-swatch">
+        <div style="background: var(--placeholder-bg);"></div>
+        <span>--placeholder-bg</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Typography -->
+  <div class="showcase-section" id="typography">
+    <h2>Typography</h2>
+
+    <p class="showcase-label">Headings (Big Caslon)</p>
+    <h1>Heading 1 — <span class="showcase-tag">&lt;h1&gt;</span></h1>
+    <h2>Heading 2 — <span class="showcase-tag">&lt;h2&gt;</span></h2>
+    <h3>Heading 3 — <span class="showcase-tag">&lt;h3&gt;</span></h3>
+    <h4>Heading 4 — <span class="showcase-tag">&lt;h4&gt;</span></h4>
+
+    <p class="showcase-label">Subheadings (Montserrat)</p>
+    <h5>{% include icons/windows/default.svg %} Heading 5 — with icon <span class="showcase-tag">&lt;h5&gt;</span></h5>
+    <h6>This is a subheading using Montserrat at a responsive clamp size. It demonstrates the default text styling used across the site for content blocks and descriptions. <span class="showcase-tag">&lt;h6&gt;</span></h6>
+
+    <p class="showcase-label">Body Text</p>
+    <p>This is a body paragraph using Montserrat at a responsive clamp size. It demonstrates the default text styling used across the site for content blocks and descriptions. <span class="showcase-tag">&lt;p&gt;</span></p>
+
+    <p class="showcase-label">Horizontal Rule <span class="showcase-tag">&lt;hr&gt;</span></p>
+    <hr>
+  </div>
+
+  <!-- Buttons -->
+  <div class="showcase-section" id="buttons">
+    <h2>Buttons</h2>
+
+    <p class="showcase-label">Base Button <span class="showcase-tag">.btn</span></p>
+    <div class="showcase-row">
+      <a class="btn" href="javascript:void(0)">Default .btn</a>
+    </div>
+
+    <p class="showcase-label">Primary Button <span class="showcase-tag">.btn.btn-primary</span></p>
+    <div class="showcase-row">
+      <a class="btn btn-primary" href="javascript:void(0)">Primary Button</a>
+    </div>
+
+    <p class="showcase-label">Disabled State <span class="showcase-tag">[disabled]</span></p>
+    <div class="showcase-row">
+      <a class="btn btn-primary" href="javascript:void(0)" disabled>Disabled Primary</a>
+      <button class="btn" disabled>Disabled Button</button>
+    </div>
+
+    <p class="showcase-label">Category Variants <span class="showcase-tag">.shop / .gallery / .food</span></p>
+    <div class="showcase-row">
+      <div class="shop">
+        <a class="btn btn-primary" href="javascript:void(0)">Shop Button</a>
+      </div>
+      <div class="gallery">
+        <a class="btn btn-primary" href="javascript:void(0)">Gallery Button</a>
+      </div>
+      <div class="food">
+        <a class="btn btn-primary" href="javascript:void(0)">Food Button</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Icons -->
+  <div class="showcase-section" id="icons">
+    <h2>Icons</h2>
+
+    <p class="showcase-label">UI Icons <span class="showcase-tag">{% raw %}{% include icons/*.svg %}{% endraw %}</span></p>
+    <div class="icon-grid">
+      <div>{% include icons/calendar.svg %}<span>calendar</span></div>
+      <div>{% include icons/caret_down.svg %}<span>caret_down</span></div>
+      <div>{% include icons/clock.svg %}<span>clock</span></div>
+      <div>{% include icons/location.svg %}<span>location</span></div>
+      <div>{% include icons/search.svg %}<span>search</span></div>
+      <div>{% include icons/facebook.svg %}<span>facebook</span></div>
+      <div>{% include icons/instagram.svg %}<span>instagram</span></div>
+    </div>
+
+    <p class="showcase-label">Window Icons <span class="showcase-tag">{% raw %}{% include icons/windows/*.svg %}{% endraw %}</span></p>
+    <div class="icon-grid">
+      <div>{% include icons/windows/shop.svg %}<span>shop</span></div>
+      <div>{% include icons/windows/gallery.svg %}<span>gallery</span></div>
+      <div>{% include icons/windows/food.svg %}<span>food</span></div>
+      <div>{% include icons/windows/event.svg %}<span>event</span></div>
+      <div>{% include icons/windows/blog.svg %}<span>blog</span></div>
+      <div>{% include icons/windows/default.svg %}<span>default</span></div>
+      <div>{% include icons/windows/weddings.svg %}<span>weddings</span></div>
+    </div>
+  </div>
+
+  <!-- Store Search -->
+  <div class="showcase-section" id="store-search">
+    <h2>Store Search <span class="showcase-tag">input[type="search"]</span></h2>
+    <input type="search" id="storeSearch" list="storeSearchList" placeholder="SEARCH FOR A STORE">
+  </div>
+
+  <!-- Store Cards -->
+  <div class="showcase-section" id="store-cards">
+    <h2>Store Cards <span class="showcase-tag">.store-card</span></h2>
+    <div class="showcase-card-grid">
+      <div class="shop">
+        <div class="store-card">
+          <img src="https://placehold.co/350x250/e8e4df/111c4e?text=Store+Image" alt="Sample store">
+          <h3>Sample Shop Name</h3>
+          <h6>Artisan Goods & Gifts</h6>
+          <p>A charming boutique offering handcrafted items from local artisans and designers.</p>
+          <a class="btn btn-primary" href="javascript:void(0)">View Store</a>
+        </div>
+      </div>
+      <div class="gallery">
+        <div class="store-card">
+          <img src="https://placehold.co/350x250/e8e4df/1b638a?text=Gallery+Image" alt="Sample gallery">
+          <h3>Sample Gallery Name</h3>
+          <h6>Contemporary Art</h6>
+          <p>Featuring works from renowned Southwestern artists in a variety of mediums.</p>
+          <a class="btn btn-primary" href="javascript:void(0)">View Gallery</a>
+        </div>
+      </div>
+      <div class="food">
+        <div class="store-card">
+          <img src="https://placehold.co/350x250/e8e4df/f88d2b?text=Restaurant+Image" alt="Sample restaurant">
+          <h3>Sample Restaurant</h3>
+          <h6>Fine Dining</h6>
+          <p>Experience the finest cuisine inspired by the flavors of the Southwest.</p>
+          <a class="btn btn-primary" href="javascript:void(0)">View Restaurant</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Store Hours -->
+  <div class="showcase-section" id="store-hours">
+    <h2>Store Hours <span class="showcase-tag">.store-hours</span></h2>
+    <div style="max-width: 350px;">
+      <div class="store-hours">
+        <div class="store-hours-title">Store Hours</div>
+        <ul class="store-hours-list">
+          <li class="store-hours-day">
+            <span class="day-name">Monday</span>
+            <span class="day-hours">10:00 AM - 5:00 PM</span>
+          </li>
+          <li class="store-hours-day">
+            <span class="day-name">Tuesday</span>
+            <span class="day-hours">10:00 AM - 5:00 PM</span>
+          </li>
+          <li class="store-hours-day today">
+            <span class="day-name">Wednesday</span>
+            <span class="day-hours">10:00 AM - 5:00 PM</span>
+          </li>
+          <li class="store-hours-day">
+            <span class="day-name">Thursday</span>
+            <span class="day-hours">10:00 AM - 5:00 PM</span>
+          </li>
+          <li class="store-hours-day">
+            <span class="day-name">Friday</span>
+            <span class="day-hours">10:00 AM - 6:00 PM</span>
+          </li>
+          <li class="store-hours-day">
+            <span class="day-name">Saturday</span>
+            <span class="day-hours">10:00 AM - 6:00 PM</span>
+          </li>
+          <li class="store-hours-day">
+            <span class="day-name">Sunday</span>
+            <span class="day-hours">11:00 AM - 5:00 PM</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar Items -->
+  <div class="showcase-section" id="calendar">
+    <h2>Calendar Items</h2>
+
+    <p class="showcase-label">Calendar Filter <span class="showcase-tag">.calendar-filter</span></p>
+    <div class="calendar-filter">
+      <select class="calendar-select">
+        <option>All Events</option>
+        <option>Annual Events</option>
+        <option>Weekly Events</option>
+      </select>
+    </div>
+
+    <p class="showcase-label">Calendar Item <span class="showcase-tag">.calendar-item</span></p>
+    <div class="calendar-items">
+      <div class="calendar-item">
+        <div class="calendar-item-date">
+          <span class="day">MAR</span>
+          <span class="date">15</span>
+        </div>
+        <div class="calendar-item-content">
+          <div class="calendar-item-image">
+            <img src="https://placehold.co/120x80/e8e4df/111c4e?text=Event" alt="Event image">
+          </div>
+          <div class="calendar-item-details">
+            <h4 class="calendar-item-title">Sample Event Title</h4>
+            <p class="calendar-item-subtitle">Annual Celebration</p>
+            <span class="calendar-item-time">10:00 AM - 4:00 PM</span>
+          </div>
+        </div>
+      </div>
+      <div class="calendar-item">
+        <div class="calendar-item-date">
+          <span class="day">APR</span>
+          <span class="date">02</span>
+        </div>
+        <div class="calendar-item-content">
+          <div class="calendar-item-image">
+            <img src="https://placehold.co/120x80/e8e4df/111c4e?text=Event" alt="Event image">
+          </div>
+          <div class="calendar-item-details">
+            <h4 class="calendar-item-title">Another Event</h4>
+            <p class="calendar-item-subtitle">Weekly Series</p>
+            <span class="calendar-item-time">5:00 PM - 8:00 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div class="showcase-section" id="map">
+    <h2>Village Map <span class="showcase-tag">{% raw %}{% include map.html %}{% endraw %}</span></h2>
+    {% include map.html %}
+  </div>
+</div>
+
+<script>
+  (function() {
+    var links = document.querySelectorAll('.showcase-nav a');
+    var sections = document.querySelectorAll('.showcase-section[id]');
+
+    function updateActive() {
+      var headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 131;
+      var scrollY = window.scrollY + headerHeight + 20;
+      var current = '';
+      sections.forEach(function(section) {
+        if (section.offsetTop <= scrollY) {
+          current = section.id;
+        }
+      });
+      links.forEach(function(link) {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    }
+
+    window.addEventListener('scroll', updateActive);
+    updateActive();
+  })();
+</script>

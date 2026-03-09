@@ -1,0 +1,24 @@
+<article id="venues">
+  <h5 class="icon-weddings">
+    {% include icons/windows/weddings.svg %}
+    {{ site.data.weddings.venues }}
+  </h5>
+
+  <div class="list-container">
+    {% assign weddings = site.weddings | sort: "date" %}
+    {% for wedding in weddings %}
+      <div class="card">
+        <h3>{{ wedding.title }}</h3>
+        {% if wedding.subtitle %}<h6>{{ wedding.subtitle }}</h6>{% endif %}
+        <div>
+          {% if wedding.image %}
+          <img src="{{ wedding.image }}" alt="{{ wedding.title }}">
+          {% else %}
+            <img src="{{ '/assets/images/placeholder.webp' | relative_url }}" alt="{{ wedding.title }}">
+          {% endif %}
+          <a href="{{ wedding.url }}" class="btn btn-primary">{{ site.data.weddings.buttons.learn_more }}</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</article>

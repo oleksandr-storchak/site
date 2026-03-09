@@ -1,0 +1,16 @@
+<article id="gallery">
+  <h5 class="icon-weddings">
+    {% include icons/windows/weddings.svg %}
+    {{ site.data.weddings.gallery.title }}
+  </h5>
+
+  <div class="list-container">
+    {% for item in site.data.weddings.gallery.items %}
+      <div class="card">
+        <h3>{{ item.title }}</h3>
+        <video src="{{ item.video_url }}" controls></video>
+      </div>
+    {% endfor %}
+  </div>
+  <a href="/galleries/" class="btn btn-primary">{{ site.data.weddings.buttons.explore_more }}</a>
+</article>

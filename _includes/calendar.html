@@ -1,0 +1,63 @@
+{% assign calendar_events = site.events | sort: "starts_at" %}
+
+{% comment %}Build unique month options{% endcomment %}
+{% assign months = "" %}
+{% for event in calendar_events %}
+  {% if event.starts_at %}
+    {% assign month_val = event.starts_at | date: "%Y-%m" %}
+    {% assign month_label = event.starts_at | date: "%B %Y" | upcase %}
+    {% unless months contains month_val %}
+      {% if months != "" %}{% assign months = months | append: "|" %}{% endif %}
+      {% assign months = months | append: month_val | append: ":" | append: month_label %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}
+{% assign month_pairs = months | split: "|" %}
+
+<div class="calendar" id="calendar">
+  <h2 class="calendar-title">Calendar</h2>
+
+  <div class="calendar-filter">
+    <select class="calendar-select" id="calendar-select">
+      {% for pair in month_pairs %}
+        {% assign parts = pair | split: ":" %}
+        <option value="{{ parts[0] }}">{{ parts[1] }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="calendar-items">
+    {% for event in calendar_events %}
+      {% if event.starts_at %}
+      <div class="calendar-item" data-month="{{ event.starts_at | date: '%Y-%m' }}">
+        <div class="calendar-item-date">
+          <span class="day">{{ event.starts_at | date: "%A" | upcase }}</span>
+          <span class="date">{{ event.starts_at | date: "%b %-d" | upcase }}</span>
+        </div>
+        <div class="calendar-item-content">
+          <div class="calendar-item-image">
+            {% if event.image %}
+              <img src="{{ event.image }}" alt="{{ event.title }}">
+            {% else %}
+              <img src="{{ '/assets/images/placeholder.webp' | relative_url }}" alt="{{ event.title }}">
+            {% endif %}
+          </div>
+          <div class="calendar-item-details">
+            <h3 class="calendar-item-title">{{ event.title }}</h3>
+            {% if event.subtitle %}
+              <p class="calendar-item-subtitle">{{ event.subtitle }}</p>
+            {% endif %}
+            <div class="calendar-item-time">
+              {% if event.ends_at %}
+                {{ event.starts_at | date: "%-I:%M" }} - {{ event.ends_at | date: "%-I:%M %p" }}
+              {% else %}
+                {{ event.starts_at | date: "%-I:%M %p" }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

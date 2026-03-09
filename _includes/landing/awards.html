@@ -1,0 +1,8 @@
+{% assign awards = site.landing | where: "slug", "awards" | first %}
+<section id="{{ awards.slug }}">
+  <ul>
+    {% for item in awards.items %}
+    <li><img src="{{ item.image | relative_url }}" alt="{{ item.alt }}" loading="lazy" width="{{ item.width }}" height="{{ item.height }}"></li>
+    {% endfor %}
+  </ul>
+</section>
